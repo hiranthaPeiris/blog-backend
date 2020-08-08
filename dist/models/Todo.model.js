@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Todo = /** @class */ (function () {
-    function Todo(id, text) {
+class Todo {
+    constructor(id, text) {
         this.id = id;
         this.text = text;
     }
-    return Todo;
-}());
+}
 exports.default = Todo;
