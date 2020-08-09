@@ -14,7 +14,7 @@ export const userLogin: RequestHandler = async (req, res, next) => {
   const reqbody = req.body as UserLoginInter;
   let rst = await UserModel.findByCredintials(reqbody.username);
 
-  if (rst) {
+  if (rst.length !== 0) {
     const valid = compaireHash(reqbody.password, rst[0].password!);
     console.log(valid);
     const user = rst[0];
@@ -38,6 +38,7 @@ export const userLogin: RequestHandler = async (req, res, next) => {
 };
 
 export const userSingup: RequestHandler = async (req, res, next) => {
+  
   //get body username,email,password
   const body = req.body as UserSignupInter;
   //check existance

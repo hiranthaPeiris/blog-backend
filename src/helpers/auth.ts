@@ -1,5 +1,5 @@
-import { Request,Response } from "express";
-import { sign } from "jsonwebtoken";
+import { Request, Response } from "express";
+import { sign, verify } from "jsonwebtoken";
 
 export const createAccessToken = (userID: string) => {
   return new Promise((resolve, reject) => {
@@ -37,16 +37,24 @@ export const createRefreshToken = (userID: string) => {
   });
 };
 
-export const sendAccessToken= (req:Request, res:Response, accestoken:string) => {
+export const sendAccessToken = (
+  req: Request,
+  res: Response,
+  accestoken: string
+) => {
   res.send({
     accestoken,
     email: req.body.email,
   });
 };
 
-export const sendRefreshToken = (res:Response, refreshToken: string) => {
+export const sendRefreshToken = (res: Response, refreshToken: string) => {
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
     path: "/",
   });
+};
+
+export const isAuth = (accessToken:string) => {
+  return verify(accessToken,process.env.ACCESS_TOKEN_SECRET!);
 };

@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const todos_1 = __importDefault(require("./routes/todos"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
+const posts_route_1 = __importDefault(require("./routes/posts.route"));
 const body_parser_1 = require("body-parser");
 const mongoose_1 = __importDefault(require("mongoose"));
 const cors_1 = __importDefault(require("cors"));
@@ -29,6 +30,7 @@ mongoose_1.default
 });
 app.use("/todos", todos_1.default);
 app.use("/api/user", user_route_1.default);
+app.use("/api/post", posts_route_1.default);
 app.use((err, req, res, next) => {
     res.status(500).json({ message: err.message });
 });

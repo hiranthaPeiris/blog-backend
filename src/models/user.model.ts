@@ -10,13 +10,19 @@ class User {
   public password?: string;
 
   @prop({})
-  public refreshToken?:string;
-  
+  public refreshToken?: string;
   public static async findByCredintials(
     this: ReturnModelType<typeof User>,
     username: string
   ) {
     return await this.find({ username }).exec();
+  }
+
+  public static async findByUserId(
+    this: ReturnModelType<typeof User>,
+    userId: string
+  ) {
+    return await this.findById(userId);
   }
 }
 

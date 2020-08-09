@@ -25,6 +25,11 @@ class User {
             return yield this.find({ username }).exec();
         });
     }
+    static findByUserId(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield this.findById(userId);
+        });
+    }
 }
 __decorate([
     typegoose_1.prop({ required: true }),

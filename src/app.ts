@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import todos from "./routes/todos";
 import user from "./routes/user.route";
+import post from "./routes/posts.route";
 import { json, urlencoded } from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -31,6 +32,7 @@ mongoose
 
 app.use("/todos", todos);
 app.use("/api/user", user);
+app.use("/api/post",post);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json({ message: err.message });

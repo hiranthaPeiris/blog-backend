@@ -15,7 +15,7 @@ const user_model_1 = require("../models/user.model");
 exports.userLogin = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const reqbody = req.body;
     let rst = yield user_model_1.UserModel.findByCredintials(reqbody.username);
-    if (rst) {
+    if (rst.length !== 0) {
         const valid = hasher_1.compaireHash(reqbody.password, rst[0].password);
         console.log(valid);
         const user = rst[0];

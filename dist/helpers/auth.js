@@ -37,3 +37,6 @@ exports.sendRefreshToken = (res, refreshToken) => {
         path: "/",
     });
 };
+exports.isAuth = (accessToken) => {
+    return jsonwebtoken_1.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+};
