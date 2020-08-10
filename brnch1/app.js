@@ -5,6 +5,7 @@ const mongoose=require('mongoose');
 const bodyParser=require('body-parser');
 const bcrypt = require('bcryptjs');
 const passport= require('passport');
+//const override= require('method-override');
 
 const app = express();
 const port=process.env.PORT ||3000;
@@ -29,19 +30,22 @@ if(connecion){
 }
 
 
-const user=require('./routes/users'); 
+
+
 
 
 //front end eka ganne meken
 app.use(express.static(path.join(__dirname,"public")));
 //user kiyala route ekk awoth user variable ek balanna
+
+const user=require('./routes/users'); 
 app.use('/user',user);
 
 
 
-app.get("/",function (req,res){
-  res.send("Hellow world");
-});
+
+
+
 
 app.listen(port,function(){
   console.log("listen server"+port);

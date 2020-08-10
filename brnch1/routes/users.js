@@ -1,7 +1,12 @@
 const express = require('express');
 //request handle krnne Router haraha
 const router=express.Router();
+
+const noticeCon=require('../controller/noticeController');
+
 const User=require('../models/user');
+const Notice=require('../models/notice');
+
 const jwt= require('jsonwebtoken');
 const config=require('../config/database');
 const passport= require('passport');
@@ -51,6 +56,7 @@ router.post("/login",function (req,res){
             };
 
      User.passwordCheck(password,user.password,function(err,match){
+
        if(err) throw err;
        if(match)
           {
@@ -82,5 +88,24 @@ router.post("/login",function (req,res){
         res.json({user:req.user});
     }
 );
+
+router.get('/notice',function(req,res){
+  const newNotice=new Notice({
+    title:body.title,
+    content:body.content,
+    date:body.date
+
+  });
+router.route('/notice/create').get(noticeCon.create);
+
+router.route('/notice/update').get(noticeCon.update);
+
+router.route('/notice/delete').get(noticeCon.delete);
+  
+
+
+});
+
+
 
 module.exports=router;
