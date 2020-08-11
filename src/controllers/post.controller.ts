@@ -35,24 +35,24 @@ export const getPostBySlug: RequestHandler = async (req, res, next) => {
   }
 };
 
-//   PostCtrl.updatePost = async (req, res) => {
-//     const { image, title, description, markdown } = req.body;
-//     try {
-//       await Post.findOneAndUpdate(
-//         { _id: req.params.id },
-//         { image, title, description, markdown }
-//       );
-//       res.status(200).send({ message: "Post update successfully" });
-//     } catch (error) {
-//       res.status(500).send(error);
-//     }
-//   };
+export const  updatePost:RequestHandler = async (req, res) => {
+    const postBody = req.body as postInterface;
+    try {
+      await postModel.findOneAndUpdate(
+        { _id: req.params.id },
+        postBody
+      );
+      res.status(200).send({ message: "Post update successfully" });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  };
 
-//   PostCtrl.deletePost = async (req, res) => {
-//     try {
-//       await Post.findOneAndDelete({ _id: req.params.id });
-//       res.status(200).send({ message: "Post deleted successfully" });
-//     } catch (error) {
-//       res.status(500).send(error);
-//     }
-//   };
+export const deletePost:RequestHandler = async (req, res) => {
+    try {
+      await postModel.findOneAndDelete({ _id: req.params.id });
+      res.status(200).send({ message: "Post deleted successfully" });
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  };

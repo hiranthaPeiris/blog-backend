@@ -44,23 +44,22 @@ exports.getPostBySlug = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         res.status(404).send(err);
     }
 });
-//   PostCtrl.updatePost = async (req, res) => {
-//     const { image, title, description, markdown } = req.body;
-//     try {
-//       await Post.findOneAndUpdate(
-//         { _id: req.params.id },
-//         { image, title, description, markdown }
-//       );
-//       res.status(200).send({ message: "Post update successfully" });
-//     } catch (error) {
-//       res.status(500).send(error);
-//     }
-//   };
-//   PostCtrl.deletePost = async (req, res) => {
-//     try {
-//       await Post.findOneAndDelete({ _id: req.params.id });
-//       res.status(200).send({ message: "Post deleted successfully" });
-//     } catch (error) {
-//       res.status(500).send(error);
-//     }
-//   };
+exports.updatePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const postBody = req.body;
+    try {
+        yield post_model_1.postModel.findOneAndUpdate({ _id: req.params.id }, postBody);
+        res.status(200).send({ message: "Post update successfully" });
+    }
+    catch (error) {
+        res.status(500).send(error);
+    }
+});
+exports.deletePost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield post_model_1.postModel.findOneAndDelete({ _id: req.params.id });
+        res.status(200).send({ message: "Post deleted successfully" });
+    }
+    catch (error) {
+        res.status(500).send(error);
+    }
+});
